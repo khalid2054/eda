@@ -27,19 +27,19 @@ numeric_column = df[['age', 'bmi', 'children', 'charges']]
 fig, axes = plt.subplots(2, 2, figsize=(12, 8))
 axes = axes.flatten()
 
-# for i, col in enumerate(numeric_column.columns):  
-#     sns.histplot(numeric_column[col], bins=20, kde=True, ax=axes[i])
-#     axes[i].set_title(col)
+for i, col in enumerate(numeric_column.columns):  
+    sns.histplot(numeric_column[col], bins=20, kde=True, ax=axes[i])
+    axes[i].set_title(col)
 
-# plt.tight_layout()
-# plt.show()
+plt.tight_layout()
+plt.show()
 
-# sns.countplot(x=df['children'], data=df)
-# plt.show()
-# sns.countplot(x=df['sex'], data=df)
-# plt.show()
-# sns.countplot(x=df['smoker'], data=df)
-# plt.show()
+sns.countplot(x=df['children'], data=df)
+plt.show()
+sns.countplot(x=df['sex'], data=df)
+plt.show()
+sns.countplot(x=df['smoker'], data=df)
+plt.show()
 
 # data processing
 df_cleaned = df.copy() 
