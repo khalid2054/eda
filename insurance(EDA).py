@@ -44,11 +44,11 @@ plt.show()
 # data processing
 df_cleaned = df.copy() 
 
-df_cleaned['charges'] = np.log(df_cleaned['charges'])  # FIX 2: log transform here, not in EDA
-# sns.histplot(df_cleaned['charges'], bins=20, kde=True)
-# plt.show()
+df_cleaned['charges'] = np.log(df_cleaned['charges']) 
+sns.histplot(df_cleaned['charges'], bins=20, kde=True)
+plt.show()
 
-print(df_cleaned.head(5))
+
 
 print(df_cleaned['sex'].value_counts())
 df_cleaned['sex'] = df_cleaned['sex'].map({'male': 0, 'female': 1})
@@ -60,11 +60,8 @@ df_cleaned.rename(columns={'sex': 'is_female', 'smoker': 'is_smoker'}, inplace=T
 
 print(df_cleaned['region'].value_counts())
 df_cleaned = pd.get_dummies(df_cleaned, columns=['region'], drop_first=True)
-
-
-
-# sns.histplot(df_cleaned['bmi'])
-# plt.show()
+sns.histplot(df_cleaned['bmi'])
+plt.show()
 
 df_cleaned['bmi_category'] = pd.cut(
     df_cleaned['bmi'],
@@ -78,13 +75,9 @@ df_cleaned=df_cleaned.astype(int)
 col = ['age' , 'bmi', 'children']
 scaler = StandardScaler()
 df_cleaned[col]= scaler.fit_transform(df_cleaned[col])
-
-print(df_cleaned.head(10))
-
 print(df_cleaned.columns.tolist())
 
 # Pearson Correlation Calculation
-
 selected_features = [
     'age', 'bmi', 'children', 'is_female', 'is_smoker',
     'region_northwest', 'region_southeast', 'region_southwest',
